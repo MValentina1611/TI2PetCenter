@@ -113,7 +113,7 @@ public class Pet{
 	{
 		String petInfo = "";
 
-		petInfo = petOwner.toString() + "\nPet's Data: \nName: "+name+"\nAge: "+age+"\nSpecies: "+petSpecies+"\nBreed: "+breed+"\nSymptom: "+symptom+"\nStatus:  "+petStatus+"\nPriority: "+petPriority+"\nVet: "+ vetPet.toString();
+		petInfo = petOwner.toString() + "\n\t\nPet's Data: \n\tName: "+name+"\t\nAge: "+age+"\t\nSpecies: "+petSpecies+"\n\tBreed: "+breed+"\n\tSymptom: "+symptom+"\n\tStatus:  "+petStatus+"\n\tPriority: "+petPriority+"\n\t\nVet: "+ vetPet.toString();
 
 		return petInfo;
 	}
