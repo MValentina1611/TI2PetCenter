@@ -41,7 +41,12 @@ public class PetCenterSystem{
 	*/
 	private int countPriority5;
 	
+
 	//Relationships:
+
+	/**
+	*Relationship between ui and model packages<br>
+	*/
 	private PetCenter petCenter;
 
 
@@ -83,6 +88,12 @@ public class PetCenterSystem{
 
 
 
+	/**
+	* Displays menu, and catch the option choosen by the user <br>
+	* <b> pre:</b> reader must be initialized <br>
+	* <b> pos:</b> no changes on global variables <br>
+	* @return munuOp int, return the variable with the option choosen by the user
+	*/
 	public int showMenu() 
 	{
 		int menuOp = 0;
@@ -104,6 +115,14 @@ public class PetCenterSystem{
 		return menuOp;
 
 	}//Method ends
+	
+
+	/**
+	* Execute the methods required for accomplish each option <br>
+	* <b> pre:</b> global variables must be initialized. Depends of each option <br>
+	* <b> pos:</b> no changes on global variables. Depends of each option <br>
+	* @param menuOp int
+	*/
 	
 	public void executeOptions(int menuOp) 
 	{
@@ -138,7 +157,7 @@ public class PetCenterSystem{
 			
 			case 7:
 				System.out.println( "The number of pets that have not been cared for is: " + countPetForCare() );
-				System.out.println( petCenter.showVets());
+				System.out.println( petCenter.showPets());
 				break;
 			
 			case 8:
@@ -151,6 +170,13 @@ public class PetCenterSystem{
  		
 	}//Method ends
 	
+
+	/**
+	* Asks for the vet's data, and call the necessary method to add it to the array <br>
+	* <b> pre:</b> vet array must be initialized<br>
+	* <b> pos:</b> no changes on global variables <br>
+	*/
+
 	public void registerVet()
 	{
 		if( petCenter != null )
@@ -162,6 +188,7 @@ public class PetCenterSystem{
 
 			else
 			{
+				//Inputs.
 				String idVet = "";
  				String name = "";
  				String lastname = "";
@@ -189,11 +216,16 @@ public class PetCenterSystem{
 	}
 	
 
+	/**
+	* Asks for the pet's data, and call the necessary method to add it to the array <br>
+	* <b> pre:</b> pet array must be initialized<br>
+	* <b> pos:</b> no changes on global variables <br>
+	*/
 
 	public void registerPet()
 	{	
 		//Ask for owner:
-
+		//Inputs.
 		String  fullName,
 			idOwner,
 			phone,
@@ -214,7 +246,7 @@ public class PetCenterSystem{
 		address = reader.nextLine();
 	
 		//Ask for Pet:
-		
+		//Inputs.
 		String  name, 
 			age,
 			symptom,
@@ -288,7 +320,15 @@ public class PetCenterSystem{
 
 	}//Method ends
 		
+
 	//Ask for priority:
+
+	/**
+	* Assigns a priority an each pet<br>
+	* <b> pre:</b> pet must be created<br>
+	* <b> pos:</b> no changes on global variables <br>
+	* @param name String
+	*/
 
 	public void selectPriority( String name )
 	{
@@ -332,6 +372,15 @@ public class PetCenterSystem{
 
 	}//Method ends
 
+
+
+	/**
+	* Asks for the pet's breed if is cat or dog <br>
+	* <b> pre:</b> pet must be created <br>
+	* <b> pos:</b> no changes on global variables <br>
+	* @return breed String
+	*/
+
 	public String askForBreed()
 	{	
 		String breed = "";
@@ -340,6 +389,13 @@ public class PetCenterSystem{
 		return breed;
 	}	
 	
+
+	/**
+	* Asks for the name of a pet for set its status <br>
+	* <b> pre:</b> countWA must be initialized <br>
+	* <b> pos:</b> plus 1 to countWA  <br>
+	*/
+
 	public void removeAPet()
 	{
 		String name = "";
@@ -366,6 +422,13 @@ public class PetCenterSystem{
 		}
 	} 
 
+
+	/**
+	* Asks for the id of a vet for delete it of the array <br>
+	* <b> pre:</b> vet must exist<br>
+	* <b> pos:</b> no changes on global variables <br>
+	*/
+
 	public void deleteVetPCS()
 	{
 		String id = "";
@@ -382,6 +445,12 @@ public class PetCenterSystem{
 	 	
 		
 	}
+
+	/**
+	* Ask for the data, call the necessary methods, and indicates if it can start a consultation <br>
+	* <b> pre:</b> vetNumber must be greater than 0<br>
+	* <b> pos:</b> no changes on global variables <br>
+	*/
 
 	public void startAConsultation()
 	{
@@ -414,26 +483,35 @@ public class PetCenterSystem{
 
 	}
  
+
+	/**
+	*Makes the necessary verifications, and call the required methods to select a pet for care, and displays the pet selected<br>
+	* <b> pre:</b> pet array must be initialized and fill <br>
+	* <b> pos:</b> plus 1 to counPriority1, countPriority2, countPriority3, countPriority4, countPriority5, depends the pet <br>
+	* @param idVet String
+	* @return petInfo String
+	*/
+
 	public String selectPetForCare( String idVet )
 	{
 		boolean petAttended = true;
 		boolean found = false;
 		String petInfo = "";
 		int countConsultation = 0;
+		int priority = 1;
 
-		for( int i = 0; i < 120 && !found; i++ )
+		for( int i = 0; i < petCenter.getPetNumber() && !found; i++ )
 		{
-			int priority = 1;
-
-			if( petCenter.getPetForConsultation( i ) != null )
+			if( petCenter.getPetForConsultation( i ) != null )			
 			{
+					petInfo = "null si"; 
+
 				if( petCenter.getPetForConsultation( i ).getPetStatus() == Status.WAITING_TO_BE_ATTENDED )
 				{
+					petInfo = "waiting si";
 
-					switch( priority )
+					if( priority == 1)
 					{
-
-					case 1:
 						if( petCenter.getPetForConsultation( i ).getPetPriority() == Priority.RED_1 )
 						{
 							petCenter.getPetForConsultation( i ).setVetPet( petCenter.getVet( idVet ) );
@@ -452,10 +530,12 @@ public class PetCenterSystem{
 						{
 							priority ++;
 						}
+					}
 			
-					break;
 
-					case 2: 
+					if( priority == 2)
+					{
+			
 						if( petCenter.getPetForConsultation( i ).getPetPriority() == Priority.ORANGE_2 )
 						{
 							petCenter.getPetForConsultation( i ).setVetPet( petCenter.getVet( idVet ) );
@@ -474,10 +554,11 @@ public class PetCenterSystem{
 						{
 							priority ++;
 						}
-	
-					break;
+					}
 
-					case 3:
+					if( priority == 3 )
+					{
+
 						if( petCenter.getPetForConsultation( i ).getPetPriority() == Priority.YELLOW_3 )
 						{
 							petCenter.getPetForConsultation( i ).setVetPet( petCenter.getVet( idVet ) );
@@ -496,9 +577,10 @@ public class PetCenterSystem{
 							priority ++;
 						}
 	
-					break;
+					}	
 
-					case 4:
+					if( priority == 4 )
+					{
 
 						if( petCenter.getPetForConsultation( i ).getPetPriority() == Priority.GREEN_4 )
 						{
@@ -519,9 +601,10 @@ public class PetCenterSystem{
 							priority ++;
 						}
 	
-					break;
+					}
 
-					case 5:
+					if( priority == 5 )
+					{
 
 						if( petCenter.getPetForConsultation( i ).getPetPriority() == Priority.BLUE_5 )
 						{
@@ -541,23 +624,30 @@ public class PetCenterSystem{
 							priority ++;
 						}
 
-					break;
-				
-					default:
-						petInfo = "No pets found with status: "+ Status.WAITING_TO_BE_ATTENDED;
-
-
 					}
 
-				
-				}
-			}
+					if( priority > 5)
+					{
+						petInfo = "No pets found with status: "+ Status.WAITING_TO_BE_ATTENDED;
+					}
 
-		}
-		
+				}//if ends
+
+			}//if ends
+
+			
+
+		}//for ends
+
 		return petInfo;
-	}
 
+	}//Method ends
+
+	/**
+	* Ask for the data, call the necessary methods, to finalize a consultation <br>
+	* <b> pre:</b> vetNumber and petNumber must be greater than 0, <br>
+	* <b> pos:</b> no changes on global variables <br>
+	*/
 
 	public void finalizeAConsultation()
 	{
@@ -619,6 +709,13 @@ public class PetCenterSystem{
 	
 	}
 
+	/**
+	* Calculate how many pets left to attend <br>
+	* <b> pre:</b> pet array must be initialized and fill <br>
+	* <b> pos:</b> no changes on global variables <br>
+	* @return countPet int
+	*/
+
 	public int countPetForCare()
 	{
 		int countPet = 0;
@@ -637,6 +734,12 @@ public class PetCenterSystem{
 		return countPet;
 	}
 
+	/**
+	* Indicates to the user how many pets left to attend or if all pets have been attended <br>
+	* <b> pre:</b> countPriority1, countPriority2, countPriority3, countPriority4, countPriority5 must be initialized<br>
+	* <b> pos:</b> no changes on global variables <br>
+	*/
+
 	public void verifyPetForCare()
 	{
 		if( countPetForCare() > 0 )
@@ -649,6 +752,13 @@ public class PetCenterSystem{
 			
 		}
 	}
+
+	
+	/**
+	* Shows how many pets were attended for each priority. <br>
+	* <b> pre:</b> countPriority1, countPriority2, countPriority3, countPriority4, countPriority5 must be initialized<br>
+	* <b> pos:</b> no changes on global variables <br>
+	*/
 
 	public void countPetsForPriority()
 	{
@@ -678,6 +788,13 @@ public class PetCenterSystem{
 		return percentage;
 	}
 
+
+	/**
+	* Call the necessary methods, for show the reports and close the petcenter <br>
+	* <b> pre:</b> vetNumber and petNumber must be greater than 0<br>
+	* <b> pos:</b> no changes on global variables <br>
+	*/
+
 	public void showReports()
 	{
 		if( petCenter.getPetNumber() == 0 )
@@ -687,7 +804,7 @@ public class PetCenterSystem{
 		else
 		{
 
-			System.out.println("========Reports========" );
+			System.out.println("\n\t========Reports========" );
 			 verifyPetForCare();
 			System.out.println( "\n\tThe vet with the most visits is: " + petCenter.getMaxVet() );
 			countPetsForPriority();

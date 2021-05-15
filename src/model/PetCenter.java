@@ -334,6 +334,8 @@ public class PetCenter{
 	* Subtract 1 from vetNumber  <br>
 	* <b> pre:</b> vetNumber must be initialized  <br>
 	* <b> pos:</b> subtract 1 from vetNumber<br>
+	*/
+
 	public void vetMinus1()
 	{
 		vetNumber = vetNumber - 1; 
@@ -377,7 +379,7 @@ public class PetCenter{
 
 	public Pet getPetForConsultation( int i )
 	{
-		return pet[i];		
+		return pet[i];
 	}
 
 	/**
@@ -412,6 +414,7 @@ public class PetCenter{
 	* Becomes pet array to empty<br>
 	* <b> pre:</b> pet array must be initialized and fill <br>
 	* <b> pos:</b> becomes pet array to empty <br>
+	*/
 	
 	public void becomePetNull()
 	{
@@ -421,5 +424,25 @@ public class PetCenter{
 			petNumber = 0;
 		}
 	}
+
+	public String showPets()
+	{
+		String petInfo= "";
+
+		for( int i = 0; i < NUM_PET; i++ )
+		{
+			if ( pet[i] != null )
+			{
+				petInfo += pet[i].toString();
+			}
+
+		}
+
+		return petInfo;
+	}
+
+
+
+
 
 }
