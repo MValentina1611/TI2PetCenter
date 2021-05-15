@@ -2,17 +2,28 @@ package model;
 
 public class Pet{
 
-	private String name;
-	private String age;
-	private String breed;
-	private String symptom;
+	//Attributes:
+	private String name; //Input. Pet's Name
+	private String age;  //Input. Pet's Age
+	private String breed;//Input. Pet's breed, only for dogs and cats.
+	private String symptom;//Input. Pet's symptoms
 
 	//Relationships:
-
-	private Owner petOwner;
+	private Owner petOwner;  
 	private Status petStatus;
 	private Species petSpecies;
 	private Priority petPriority;
+	private Vet vetPet;//Contains the information of the veterinarian who attended the pet
+
+	//Builders:
+
+	/**
+	* Creates cats and dogs, they need their breed specified<br>
+	* <b> pre:</b> the attributes must be declared<br>
+	* <b> pos:</b> no change on global variables<br>
+	* @param atrributes and relationships, types must match and must be other than null
+	*/
+
 
 	public Pet( String nameBreed, String ageBreed, String breed, String symptomBreed, String idOwner, String fullName, String phone, String address, Status petStatusBreed, Species petSpeciesBreed, Priority petPriorityBreed )
 	{
@@ -24,7 +35,16 @@ public class Pet{
 		petStatus = petStatusBreed;
 		petSpecies = petSpeciesBreed;
 		petPriority = petPriorityBreed;
+		this.vetPet = new Vet( "Has", "not", "been", "assigned" );
+
 	}
+
+	/**
+	* Creates rabbits, birds and reptiles, they not need their breed specified<br>
+	* <b> pre:</b> the attributes must be declared<br>
+	* <b> pos:</b> no change on global variables<br>
+	* @param atrributes and relationships, types must match and must be other than null
+	*/
 
 	public Pet( String name, String age, String symptom, String idOwner, String fullName, String phone, String address, Status petStatus, Species petSpecies, Priority petPriorityBreed )
 	{
@@ -35,6 +55,7 @@ public class Pet{
 		this.petStatus = petStatus;
 		this.petSpecies = petSpecies;
 		this.petPriority = petPriority;
+		this.vetPet = new Vet( "Has", "not", "been", "assigned" );
 	}
 
 	//setters:
@@ -54,6 +75,11 @@ public class Pet{
 		this.petPriority = petPriority;
 	}
 
+	public void setVetPet( Vet vetPet)
+	{
+		this.vetPet = vetPet;
+	}
+
 	//getters:
 
 	public String getName()
@@ -66,11 +92,28 @@ public class Pet{
 		return petStatus;
 	}
 
+	public Vet getVetPet()
+	{
+		return vetPet;
+	}
+
+	public Priority getPetPriority()
+	{
+		return petPriority;
+	}
+
+	public Owner getPetOwner()
+	{
+		return petOwner;
+	}
+
+	//toString method:
+
 	public String toString()
 	{
 		String petInfo = "";
 
-		petInfo = petOwner.toString() + "Pet's Data: \nName: "+name+"\nAge: "+age+"\nSpecies: "+petSpecies+"\nBreed: "+breed+"\nSymptom: "+symptom+"\nStatus:  "+petStatus+"\nPriority: "+petPriority;
+		petInfo = petOwner.toString() + "\nPet's Data: \nName: "+name+"\nAge: "+age+"\nSpecies: "+petSpecies+"\nBreed: "+breed+"\nSymptom: "+symptom+"\nStatus:  "+petStatus+"\nPriority: "+petPriority+"\nVet: "+ vetPet.toString();
 
 		return petInfo;
 	}

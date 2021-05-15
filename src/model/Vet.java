@@ -2,16 +2,23 @@ package model;
 
 public class Vet{
 
-	private String idVet;
-	private String name;
-	private String lastname;
-	private String uniqueVetRegister;
 
-	//Relationships:
-
-	private Pet petVet;
+	//Attributes:
+	private String idVet;// Input. id of the vet.
+	private String name; //Input. name of the vet
+	private String lastname; //Input. lastname of the vet
+	private String uniqueVetRegister;//Input. unique vet register
+	private boolean petAttended; //Output. Indicates if the vet is available to attend a pet
+	private int countConsultation; //Output. Indicates how many consultation had each vet
 
 	//Builder:
+
+	/**
+	* Creates veterinarians <br>
+	* <b> pre:</b> the attributes must be declared<br>
+	* <b> pos:</b> The attributes are initialized<br>
+	* @param atrributes types must match
+	*/
 
 	public Vet( String idVet, String name, String lastname, String uniqueVetRegister )
 	{
@@ -19,20 +26,62 @@ public class Vet{
 		this.name = name;
 		this.lastname = lastname;
 		this.uniqueVetRegister = uniqueVetRegister;
-		this.petVet = petVet;
+		this.petAttended = false;
+		this.countConsultation = 0;
 	}
 
-	public Vet( String idVetPet, String namePet, String lastnamePet, String uniqueVetRegisterPet, Pet petVet )
+
+	//getters:
+
+	public boolean getPetAttended()
 	{
-		this.idVet = idVetPet;
-		this.name = namePet;
-		this.lastname = lastnamePet;
-		this.uniqueVetRegister = uniqueVetRegisterPet;
-		this.petVet = petVet;
+		return petAttended;
 	}
 
 	public String getIdVet()
 	{
 		return idVet;
 	}
+
+	public String getName()
+	{
+		return name;
+	}
+
+	public String getLastname()
+	{
+		return lastname;
+	}
+
+	public String getUniqueVetRegister()
+	{
+		return uniqueVetRegister;
+	}
+
+	public int getCountConsultation()
+	{
+		return countConsultation;
+	}
+	
+	//setters:
+
+	public void setPetAttended( boolean petAttended )
+	{
+		this.petAttended = petAttended;
+	}
+
+	public void setCountConsultation( int countConsultation )
+	{
+		this.countConsultation = countConsultation;
+	}
+
+	public String toString()
+	{
+		String vetInfo = "";
+
+		vetInfo = "\n\tName: "+name+" "+lastname+"\t\nID: "+idVet+"\t\nUnique Vet Register: " + uniqueVetRegister + "\n\tAvailable: "+ petAttended;
+
+		return vetInfo;
+	}
+
 }
