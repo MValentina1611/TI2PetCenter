@@ -79,7 +79,7 @@ public class Vet{
 	{
 		String vetInfo = "";
 
-		vetInfo = "\n\tName: "+name+" "+lastname+"\t\nID: "+idVet+"\t\nUnique Vet Register: " + uniqueVetRegister + "\n\tAttendig Pets: "+ petAttended + "\t\nNumber of Consultation: "+ countConsultation;
+		vetInfo = "\n\tName: "+name+" "+lastname+"\n\tID: "+idVet+"\n\tUnique Vet Register: " + uniqueVetRegister + "\n\tAttendig Pets: "+ petAttended + "\n\tNumber of Consultations: "+ countConsultation;
 
 		return vetInfo;
 	}

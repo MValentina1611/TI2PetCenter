@@ -411,14 +411,20 @@ public class PetCenterSystem{
 			if( petCenter.getPet( name ).getPetStatus() == Status.WAITING_TO_BE_ATTENDED )
 			{
 				petCenter.setStatus( name, Status.EXIT_WITHOUT_ATTENTION );
-			}
-		
-			if( petCenter.getPet( name ).getPetStatus() == Status.EXIT_WITHOUT_ATTENTION )
-			{
-				System.out.println("The Pet has been removed ");
-				countWA++;
+
+				if( petCenter.getPet( name ).getPetStatus() == Status.EXIT_WITHOUT_ATTENTION )
+				{
+					System.out.println("The Pet has been removed ");
+					countWA++;
+
+				}
 
 			}
+			else
+			{
+				System.out.println("The Pet is not waiting for to be attended ");
+			}
+		
 		}
 	} 
 
@@ -432,15 +438,24 @@ public class PetCenterSystem{
 	public void deleteVetPCS()
 	{
 		String id = "";
-		if( petCenter.getVetNumber() == 0 )
+
+		if( petCenter.getPetNumber() > 0 )
 		{
-			System.out.println(" \t--ERROR--\nNone Vet has been registered");
+			System.out.println(" \t--ERROR--\nThere are pets at the center");
 		}
 		else
 		{
-			System.out.println( "\tEnter the ID of the vet that you wants delete: ");
-			id = reader.nextLine();
-			System.out.println( petCenter.deleteVet( id ) );
+			if( petCenter.getVetNumber() == 0 )
+			{
+				System.out.println(" \t--ERROR--\nNone Vet has been registered");
+			}
+			else
+			{
+				System.out.println( "\tEnter the ID of the vet that you wants delete: ");
+				id = reader.nextLine();
+				System.out.println( petCenter.deleteVet( id ) );
+			}
+
 		}
 	 	
 		
@@ -517,6 +532,7 @@ public class PetCenterSystem{
 							petCenter.getPetForConsultation( i ).setVetPet( petCenter.getVet( idVet ) );
 							petCenter.getPetForConsultation( i ).setPetStatus( Status.IN_CONSULTATION );
 							petCenter.getVet( idVet ).setPetAttended( petAttended );
+							countConsultation = petCenter.getVet( idVet ).getCountConsultation();
 							countConsultation++;
 							petCenter.getVet( idVet ).setCountConsultation( countConsultation );
 							countPriority1++;
@@ -541,6 +557,7 @@ public class PetCenterSystem{
 							petCenter.getPetForConsultation( i ).setVetPet( petCenter.getVet( idVet ) );
 							petCenter.getPetForConsultation( i ).setPetStatus( Status.IN_CONSULTATION );
 							petCenter.getVet( idVet ).setPetAttended( petAttended );
+							countConsultation = petCenter.getVet( idVet ).getCountConsultation();
 							countConsultation++;
 							petCenter.getVet( idVet ).setCountConsultation( countConsultation );
 							countPriority2++;
@@ -564,6 +581,7 @@ public class PetCenterSystem{
 							petCenter.getPetForConsultation( i ).setVetPet( petCenter.getVet( idVet ) );
 							petCenter.getPetForConsultation( i ).setPetStatus( Status.IN_CONSULTATION );
 							petCenter.getVet( idVet ).setPetAttended( petAttended );
+							countConsultation = petCenter.getVet( idVet ).getCountConsultation();
 							countConsultation++;
 							petCenter.getVet( idVet ).setCountConsultation( countConsultation );
 							countPriority3++;
@@ -587,6 +605,7 @@ public class PetCenterSystem{
 							petCenter.getPetForConsultation( i ).setVetPet(  petCenter.getVet( idVet ) );
 							petCenter.getPetForConsultation( i ).setPetStatus( Status.IN_CONSULTATION );
 							petCenter.getVet( idVet ).setPetAttended( petAttended );
+							countConsultation = petCenter.getVet( idVet ).getCountConsultation();
 							countConsultation++;
 							petCenter.getVet( idVet ).setCountConsultation( countConsultation );
 							countPriority4++;
@@ -611,6 +630,7 @@ public class PetCenterSystem{
 							petCenter.getPetForConsultation( i ).setVetPet(  petCenter.getVet( idVet ) );
 							petCenter.getPetForConsultation( i ).setPetStatus( Status.IN_CONSULTATION );
 							petCenter.getVet( idVet ).setPetAttended( petAttended );
+							countConsultation = petCenter.getVet( idVet ).getCountConsultation();
 							countConsultation++;
 							petCenter.getVet( idVet ).setCountConsultation( countConsultation );
 							countPriority5++;
