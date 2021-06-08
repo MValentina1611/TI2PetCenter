@@ -2,9 +2,15 @@ package model;
 
 public class ReptileArea extends Habitat{
 	
-	private String material;
-	private ReptileType reptileType;
+	private String material;//Output
+	private ReptileType reptileType;//Output
 
+	/**
+	* Creates a reptile area<br>
+	* <b> pre:</b> the attributes must be declared<br>
+	* <b> pos:</b> no change on global variables<br>
+	* @param atrributes and relationships, types must match and must be other than null
+	*/
 	public ReptileArea( String id, double lng , double width, UseType useType, String material, ReptileType reptileType )
 	{
 		super(id, lng, width, useType);

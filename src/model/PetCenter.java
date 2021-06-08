@@ -23,35 +23,116 @@ public class PetCenter{
 
 	private static final int NUM_PET = 120;
 
+
+	//TI3
+
 	//for cats
+
+	/**
+	* Indicates in which row of the matrix starts the catsArea  <br>
+	*/
 	private static final int MIN_CAT_ROWS = 0;
+
+	/**
+	* Indicates in which row of the matrix finish the catsArea  <br>
+	*/
 	private static final int MAX_CAT_ROWS = 2;
+
+	/**
+	* Indicates in which column of the matrix starts the catsArea  <br>
+	*/
 	private static final int MIN_CAT_COL = 0;
+
+	/**
+	* Indicates in which column of the matrix finish the catsArea  <br>
+	*/
 	private static final int MAX_CAT_COL = 2;
 
 	//for dogs
+
+	/**
+	* Indicates in which row of the matrix starts the dogsArea  <br>
+	*/
 	private static final int MIN_DOG_ROWS = 3;
+
+	/**
+	* Indicates in which row of the matrix finish the dogsArea  <br>
+	*/
 	private static final int MAX_DOG_ROWS = 5;
+
+	/**
+	* Indicates in which column of the matrix starts the dogsArea  <br>
+	*/
 	private static final int MIN_DOG_COL = 0;
+
+	/**
+	* Indicates in which column of the matrix finish the dogsArea  <br>
+	*/
 	private static final int MAX_DOG_COL = 2;
 
+
+
 	//for reptiles
+	/**
+	* Indicates in which row of the matrix starts the reptilesArea  <br>
+	*/
 	private static final int MIN_REPTILE_ROWS = 0;
+
+	/**
+	* Indicates in which row of the matrix finish the reptilesArea  <br>
+	*/
 	private static final int MAX_REPTILE_ROWS = 1;
+
+	/**
+	* Indicates in which column of the matrix starts the reptilesArea  <br>
+	*/
 	private static final int MIN_REPTILE_COL = 3;
+
+	/**
+	* Indicates in which column of the matrix finish the reptilesArea  <br>
+	*/
 	private static final int MAX_REPTILE_COL = 4;
 
 	//for rabbits
+
+	/**
+	* Indicates in which row of the matrix starts the rabbitsArea  <br>
+	*/
 	private static final int MIN_RABBIT_ROWS = 2;
+
+	/**
+	* Indicates in which row of the matrix finish the rabbitsArea  <br>
+	*/
 	private static final int MAX_RABBIT_ROWS = 3;
+
+	/**
+	* Indicates in which column of the matrix starts the rabbitsArea  <br>
+	*/
 	private static final int MIN_RABBIT_COL = 3;
+
+	/**
+	* Indicates in which column of the matrix finish the rabbitsArea  <br>
+	*/
 	private static final int MAX_RABBIT_COL = 4;
 
 	//for birds
-
+	/**
+	* Indicates in which row of the matrix starts the birdsArea  <br>
+	*/
 	private static final int MIN_BIRD_ROWS = 4;
+	/**
+	* Indicates in which row of the matrix finish the birdsArea  <br>
+	*/
 	private static final int MAX_BIRD_ROWS = 5;
+
+	/**
+	* Indicates in which column of the matrix starts the birdsArea  <br>
+	*/
 	private static final int MIN_BIRD_COL = 3;
+
+	/**
+	* Indicates in which column of the matrix finish the birdsArea  <br>
+	*/
 	private static final int MAX_BIRD_COL = 4;
 
 	
@@ -83,6 +164,10 @@ public class PetCenter{
 	private Pet [] pet;
 
 	//TI3
+
+	/**
+	* Habitats Matrix for daycare  <br>
+	*/
 	private Habitat[][] habitats;
 
 	//Builder:
@@ -105,8 +190,13 @@ public class PetCenter{
 		createAreas();
 	}
 	
-	//init habitats
+	//init habitats. TI3
 
+	/**
+	* Indicates the positions in the matrix for create each area <br>
+	* <b> pre:</b> habitat's matrix must be initialized <br>
+	* <b> pos:</b> initialize every habitat of each area <br>
+	*/
 	private void createAreas()
 	{
 		initHabitats( MIN_DOG_ROWS, MAX_DOG_ROWS, MIN_DOG_COL, MAX_DOG_COL, 1 );
@@ -117,6 +207,12 @@ public class PetCenter{
 
 	}
 
+	/**
+	* Creates the every habitat of each area<br>
+	* <b> pre:</b> habitat's matrix must be initialized <br>
+	* <b> pos:</b> initialize every habitat of each area <br>
+	* @param variables required to indicates in which position will be created the habitat, and for which species
+	*/
 	private void initHabitats( int minRows, int maxRows, int minCol, int maxCol, int species)
 	{
 		int contArea = 1;
@@ -545,6 +641,12 @@ public class PetCenter{
 
 	//TI3 Methods:
 
+	/**
+	* Displays the map of the daycare<br>
+	* <b> pre:</b> Habitat's matrix must be initialized <br>
+	* <b> pos:</b> no changes on global variables <br>
+	* @return map String, return a string with the map of the daycare
+	*/
 	public String showDaycareMap()
 	{
 		String useType = "";
@@ -575,6 +677,13 @@ public class PetCenter{
 		return map;
 	}
 
+	/**
+	* Indicates in which positions looking for empty habitats  <br>
+	* <b> pre:</b> Habitat's matrix must be initialized <br>
+	* <b> pos:</b> no changes on global variables <br>
+	* @param species String
+	* @return position int[], return an array with the position of the empty habitat, if not found it return the array with -1 in there positions
+	*/
 	public int[] findSpecificArea( String species )
 	{
 		int[] position = {-1,-1};
@@ -603,6 +712,16 @@ public class PetCenter{
 		return position;
 	}
 
+	/**
+	* Indicates which habitats are empty <br>
+	* <b> pre:</b> Habitat's matrix must be initialized <br>
+	* <b> pos:</b> no changes on global variables <br>
+	* @param minRows int indicates the limits for search the empty habitat, row start
+	* @param maxRows int indicates the limits for search the empty habitat, row finish
+	* @param minCol int indicates the limits for search the empty habitat, column start
+	* @param maxCol int indicates the limits for search the empty habitat, column finish
+	* @return position int[], return an array with the position of the empty habitat, if not found it return the array with -1 in there positions
+	*/
 	public int[] verifyEmptyHabitats( int minRows, int maxRows, int minCol, int maxCol )
 	{
 		boolean empty = false;
@@ -623,6 +742,15 @@ public class PetCenter{
 		return position;
 		
 	}
+
+
+	/**
+	* Add a pet from emergencies to the daycare<br>
+	* <b> pre:</b> Habitat's matrix must be initialized <br>
+	* <b> pos:</b> the daycarePet of an habitat it is setted<br>
+	* @param variables necessary for create a pet
+	* @return notification String, String notificating if the pet was added or not 
+	*/
 
 	//add pet from hospitalize
 	public String addPetToDaycare( String name, String age, String symptom, String idOwner, String fullName, String phone, String address, Status petStatus, Species petSpecies, Priority petPriority,  int days, String swimOrFly )
@@ -685,6 +813,13 @@ public class PetCenter{
 		return notification;
 	}
 
+	/**
+	* Show the info of the habitat that matches with the id passed like parameter<br>
+	* <b> pre:</b> Habitat's matrix must be initialized <br>
+	* <b> pos:</b> No change on global variables br>
+	* @param id String 
+	* @return info String, String with the information of an habitat
+	*/
 
 	public String showHabitatInfo( String  id )
 	{
@@ -719,6 +854,13 @@ public class PetCenter{
 		return info;	
 	}
 
+	/**
+	* Add a pet from daycare menu <br>
+	* <b> pre:</b> Habitat's matrix must be initialized <br>
+	* <b> pos:</b> the daycarePet of an habitat it is setted<br>
+	* @param variables necessary for create a pet
+	* @return notification String, String notificating if the pet was added or not 
+	*/
 	public String addPetToDaycare( String name, String age, String idOwner, String fullName, String phone, String address, Species petSpecies, int days, String swimOrFly )
 	{
 		String notification = "";
@@ -780,6 +922,13 @@ public class PetCenter{
 		return notification;
 	}
 
+	/**
+	* Show the info of the pet that matches with the name passed like parameter<br>
+	* <b> pre:</b> Habitat's matrix must be initialized <br>
+	* <b> pos:</b> No change on global variables <br>
+	* @param name String 
+	* @return info String, String with the information of a pet
+	*/
 	public String showPetInfo( String name )
 	{
 		String info = "";
@@ -868,6 +1017,12 @@ public class PetCenter{
 
 	} 
 
+	/**
+	* Show the require percentages: general occupation, healthy and sick pets, and occupation for areas  <br>
+	* <b> pre:</b> Habitat's matrix must be initialized <br>
+	* <b> pos:</b> No change on global variables <br>
+	* @return percentage String, string with the require percentages
+	*/
 	public String showOccupationPercentage()
 	{
 		String percentage = "";

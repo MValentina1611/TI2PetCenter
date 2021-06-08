@@ -62,6 +62,14 @@ public class Pet{
 
 	//DayCare Builders:
 	//To hospitalize
+
+	/**
+	* Creates pets that will go to daycare from emergencies<br>
+	* <b> pre:</b> the attributes must be declared<br>
+	* <b> pos:</b> no change on global variables<br>
+	* @param atrributes and relationships, types must match and must be other than null
+	*/
+
 	public Pet( String name, String age, String symptom, String idOwner, String fullName, String phone, String address, Status petStatus, Species petSpecies, Priority petPriority, int days )
 	{
 		this.name = name;
@@ -77,6 +85,13 @@ public class Pet{
 	
 
 	//To daycare
+
+	/**
+	* Creates pets that will go to daycare from the menu of the daycare<br>
+	* <b> pre:</b> the attributes must be declared<br>
+	* <b> pos:</b> no change on global variables<br>
+	* @param atrributes and relationships, types must match and must be other than null
+	*/
 	public Pet( String name, String age, String idOwner, String fullName, String phone, String address, Species petSpecies, int days )
 	{
 		this.name = name;
@@ -161,6 +176,12 @@ public class Pet{
 		return petInfo;
 	}
 
+/**
+	* Show the info of the pets that are added to the daycare from the daycare menu  <br>
+	* <b> pre:</b> variables must be declared <br>
+	* <b> pos:</b> No change on global variables <br>
+	* @return petInfo String, string with the pet information
+	*/
 	public String showPetInfo()
 	{
 		String petInfo = "";

@@ -86,6 +86,13 @@ public class PetCenterSystem{
 				
 	}//Main method ends.
 
+
+	/**
+	* Displays general menu, and catch the option choosen by the user <br>
+	* <b> pre:</b> reader must be initialized <br>
+	* <b> pos:</b> no changes on global variables <br>
+	* @return op int, return the variable with the option choosen by the user
+	*/
 	public int showGeneralMenu()
 	{
 		int op = 0;
@@ -100,6 +107,12 @@ public class PetCenterSystem{
 		return op;
 	}
 
+	/**
+	* Execute the methods required for accomplish each option for the general menu <br>
+	* <b> pre:</b> global variables must be initialized. Depends of each option <br>
+	* <b> pos:</b> no changes on global variables. Depends of each option <br>
+	* @param op int
+	*/
 	public void executeGeneralOptions( int op )
 	{
 		switch( op ) 
@@ -903,6 +916,12 @@ public class PetCenterSystem{
 
 	//TI3 Methods:
 
+	/**
+	* Displays daycare menu, and catch the option choosen by the user <br>
+	* <b> pre:</b> reader must be initialized <br>
+	* <b> pos:</b> no changes on global variables <br>
+	* @return op int, return the variable with the option choosen by the user
+	*/
 	public int showDaycareMenu()
 	{
 		int op = 0;
@@ -921,6 +940,13 @@ public class PetCenterSystem{
 
 	}
 
+
+	/**
+	* Execute the methods required for accomplish each option for the daycare menu <br>
+	* <b> pre:</b> global variables must be initialized. Depends of each option <br>
+	* <b> pos:</b> no changes on global variables. Depends of each option <br>
+	* @param op int
+	*/
 	public void executeDaycareOptions( int op )
 	{
 
@@ -967,6 +993,11 @@ public class PetCenterSystem{
 		}//Switch ends
 	}
 
+	/**
+	* Asks for the pet's data, and call the necessary method to add it to the matrix of habitats <br>
+	* <b> pre:</b> Habitats matrix must be initialized<br>
+	* <b> pos:</b> no changes on global variables <br>
+	*/
 	public void registerPetToDaycare()
 	{
 		//Ask for owner:
