@@ -34,6 +34,20 @@ public class Owner{
 		return fullName;
 	}
 
+	public String getIdOwner()
+	{
+		return idOwner;
+	}
+
+	public String getPhone()
+	{
+		return phone;
+	}
+
+	public String getAddress()
+	{
+		return address;
+	}
 	//toString method:
 
 	public String toString()

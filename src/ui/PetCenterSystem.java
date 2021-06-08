@@ -79,13 +79,61 @@ public class PetCenterSystem{
 
 		do
 		{
-			menuOp = pcs.showMenu();
-			pcs.executeOptions(menuOp);
+			menuOp = pcs.showGeneralMenu();
+			pcs.executeGeneralOptions( menuOp );
 
 		}while( menuOp != 0 );
 				
 	}//Main method ends.
 
+	public int showGeneralMenu()
+	{
+		int op = 0;
+		System.out.println(
+			"\n\t==== WELCOME TO THE PETCENTER SYSTEM ====\n\tPick an option\n" +
+			"\t(1) Emergencies\n" +
+			"\t(2) Daycare\n"+
+			"\t(0) Exit");
+
+		op = reader.nextInt();
+		reader.nextLine();
+		return op;
+	}
+
+	public void executeGeneralOptions( int op )
+	{
+		switch( op ) 
+		{
+			case 0:
+				System.out.println(" Finished. Bye ");
+				break;
+			case 1:
+				int menuEmergenciesOp = 0;
+				do
+				{
+					menuEmergenciesOp = showMenu();
+					executeOptions( menuEmergenciesOp );
+
+				}while( menuEmergenciesOp != 0 );
+
+				break;
+
+			case 2:
+				int menuDaycareOp = 0;
+				do
+				{
+					menuDaycareOp = showDaycareMenu();
+					executeDaycareOptions( menuDaycareOp );
+
+				}while( menuDaycareOp != 0 );
+
+				break;
+	
+			default:
+				System.out.println("Error, invalid option");
+		}//Switch ends
+ 		
+	}
 
 
 	/**
@@ -703,7 +751,7 @@ public class PetCenterSystem{
 				"(1) Has an Authorized Exit\n" +
 				"(2) Must go to Hospitalization\n");
 				option = reader.nextInt();
-		
+				reader.nextLine();
 
 				switch( option )
 				{
@@ -715,6 +763,15 @@ public class PetCenterSystem{
 					case 2:
 						petCenter.getPet( name ).setPetStatus( Status.TRANSFER_TO_HOSPITALIZATION );
 						petCenter.getVet( idVet ).setPetAttended( false );
+
+						String swimOrFly = ""; 
+						int days = 0;
+						System.out.println("If the pet can fly or can swim enter \"Fly\" or \" Swim\", according to the case, if the answer is \"None\", write that");
+						swimOrFly = reader.nextLine();
+
+						System.out.println("Enter the number of days that the pet will be Hospitalized");
+						days = reader.nextInt();
+						System.out.println(petCenter.addPetToDaycare( name, petCenter.getPet(name).getAge(), petCenter.getPet(name).getSymptom() , petCenter.getPet(name).getPetOwner().getIdOwner(), petCenter.getPet(name).getPetOwner().getFullName() , petCenter.getPet(name).getPetOwner().getPhone(), petCenter.getPet(name).getPetOwner().getAddress(), petCenter.getPet(name).getPetStatus(), petCenter.getPet(name).getPetSpecies(), petCenter.getPet(name).getPetPriority(), days, swimOrFly ));
 					break;
 
 
@@ -844,5 +901,151 @@ public class PetCenterSystem{
 		
 	}
 
+	//TI3 Methods:
+
+	public int showDaycareMenu()
+	{
+		int op = 0;
+		System.out.println(
+			"\n\t==== WELCOME TO THE DAYCARE SYSTEM ====\n\tPick an option\n" +
+			"\t(1) Register a pet\n" +
+			"\t(2) Show the info of a pet\n"+
+			"\t(3) Show the info of an habitat\n"+
+			"\t(4) Show the Daycare's Map\n"+
+			"\t(5) Reports\n"+
+			"\t(0) Exit");
+
+		op = reader.nextInt();
+		reader.nextLine();
+		return op;
+
+	}
+
+	public void executeDaycareOptions( int op )
+	{
+
+		switch( op ) 
+		{
+			case 0:
+				System.out.println(" Finished. Bye ");
+				break;
+
+			case 1:
+				registerPetToDaycare();
+				break;
+
+			case 2:
+
+				String name = "";
+				System.out.println("Enter the name of the pet that you are searching: ");
+
+				name = reader.nextLine();
+
+				System.out.println( petCenter.showPetInfo( name ) );
+				break;
+	
+			case 3:
+				String id = "";
+				System.out.println("Enter the id of the habitat that you are searching: ");
+				id = reader.nextLine();
+
+				System.out.println( petCenter.showHabitatInfo( id ) ); 
+
+				break;
+		
+			case 4:
+				System.out.println( petCenter.showDaycareMap() );
+				break;
+
+			case 5:
+				System.out.println( petCenter.showOccupationPercentage() );
+
+				break;
+
+			default:
+				System.out.println("Error, invalid option");
+		}//Switch ends
+	}
+
+	public void registerPetToDaycare()
+	{
+		//Ask for owner:
+		//Inputs.
+		String  fullName,
+			idOwner,
+			phone,
+			address;
+
+		System.out.println("\n\t--Enter the Owner's Data-- ");
+
+		System.out.println( "\n\tName: ");
+		fullName = reader.nextLine();
+
+		System.out.println( "\n\tId: " );
+		idOwner = reader.nextLine();
+
+		System.out.println( "\n\tPhone: ");
+		phone = reader.nextLine();
+		
+		System.out.println( "\n\tAddres: " );
+		address = reader.nextLine();
+	
+		//Ask for Pet:
+		//Inputs.
+		String  name, 
+			    age,
+			    species,
+			    swimOrFly;
+
+		int days = 0;
+		System.out.println("\n\t--Enter the Pet's Data-- ");
+
+		System.out.println("\n\tName: ");
+		name = reader.nextLine();
+
+		System.out.println("\n\tAge: ");
+		age = reader.nextLine();
+
+		System.out.println("\n\tSpecies: ");
+		species = reader.nextLine();
+		
+		System.out.println("If the pet can fly or can swim enter \"Fly\" or \" Swim\", according to the case, if the answer is \"None\", write that");
+		swimOrFly = reader.nextLine();
+
+		boolean created = false;
+
+		//Create pet:
+		
+
+			if( species.equalsIgnoreCase("Dog") )
+			{	
+				System.out.println( petCenter.addPetToDaycare( name, age, idOwner, fullName, phone, address, Species.DOG, days, swimOrFly ));
+				created = true;	
+			}
+
+			if( species.equalsIgnoreCase("Cat") )
+			{	
+				System.out.println( petCenter.addPetToDaycare( name, age, idOwner, fullName, phone, address, Species.CAT, days, swimOrFly ));
+				created = true;		
+			}
+
+			if( species.equalsIgnoreCase("Rabbit") )
+			{
+				System.out.println( petCenter.addPetToDaycare( name, age, idOwner, fullName, phone, address, Species.RABBIT, days, swimOrFly ));
+				created = true;	
+			}
+
+			if( species.equalsIgnoreCase("Reptile") )
+			{
+				System.out.println( petCenter.addPetToDaycare( name, age, idOwner, fullName, phone, address, Species.REPTILE, days, swimOrFly ));
+				created = true;	
+			}
+		
+			if( species.equalsIgnoreCase("Bird") )
+			{
+				System.out.println( petCenter.addPetToDaycare( name, age, idOwner, fullName, phone, address, Species.CAT, days, swimOrFly ));
+				created = true;	
+			}
+	}
 
 }
