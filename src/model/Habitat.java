@@ -4,11 +4,11 @@ public abstract class Habitat{
 	
 	//Atributes
 	private String id;// Output id of the habbitats
-	private Dimensions dimensions; // Output dimensions of the habitat
-	private UseType useType; // Output if the habitat is empty or if the pet is sick or healthy
-
+	
 	//Relationships
 	private Pet daycarePet; //pet that stays in the habitat
+	private Dimensions dimensions; // Output dimensions of the habitat
+	private UseType useType; // Output if the habitat is empty or if the pet is sick or healthy
 
 
 	/**
